@@ -1,0 +1,97 @@
+{
+  "logger": {
+    "level": "info",
+    "timestamp": false
+  },
+  "esclient": {
+    "apiVersion": "7.5",
+    "hosts": [
+      { "host": "elasticsearch" }
+    ]
+  },
+  "elasticsearch": {
+    "settings": {
+      "index": {
+        "refresh_interval": "10s",
+        "number_of_replicas": "0",
+        "number_of_shards": "1"
+      }
+    }
+  },
+  "acceptance-tests": {
+    "endpoints": {
+      "docker": "http://api:4000/v1/"
+    }
+  },
+  "api": {
+    "services": {
+      "pip": { "url": "http://pip:4200" },
+      "libpostal": { "url": "http://libpostal:4400" },
+      "placeholder": { "url": "http://placeholder:4100" },
+      "interpolation": { "url": "http://interpolation:4300" }
+    },
+    "defaultParameters": {
+      "focus.point.lat": 38.507034,
+      "focus.point.lon": -122.813354
+    }
+  },
+  "imports": {
+    "adminLookup": {
+      "enabled": true
+    },
+    "geonames": {
+      "datapath": "/data/geonames",
+      "countryCode": "US"
+    },
+    "openstreetmap": {
+      "download": [
+        { "sourceURL": "https://download.geofabrik.de/north-america/us/california/norcal-latest.osm.pbf" }
+      ],
+      "leveldbpath": "/tmp",
+      "datapath": "/data/openstreetmap",
+      "import": [{
+        "filename": "norcal-latest.osm.pbf"
+      }]
+    },
+    "openaddresses": {
+      "datapath": "/data/openaddresses",
+      "files": [
+		"us/ca/mendocino.csv",
+		"us/ca/sonoma.csv",
+		"us/ca/napa.csv",
+		"us/ca/lake.csv",
+		"us/ca/marin.csv",
+		"us/ca/humboldt.csv",
+		"us/ca/solano.csv"
+      ]
+    },
+    "polyline": {
+      "datapath": "/data/polylines",
+      "files": [ "extract.0sv" ]
+    },
+    "whosonfirst": {
+      "datapath": "/data/whosonfirst",
+      "importPostalcodes": true,
+      "countryCode": "US",
+      "importPlace": [
+        "85688637"
+      ]
+    },
+    "interpolation": {
+      "download": {
+        "tiger": {
+          "datapath": "/data/tiger",
+          "states": [
+            { "state_code": 6, "county_code": 45, "name": "Mendocino County, CA" },
+            { "state_code": 6, "county_code": 55, "name": "Napa County, CA" },
+            { "state_code": 6, "county_code": 33, "name": "Lake County, CA" },
+            { "state_code": 6, "county_code": 41, "name": "Marin County, CA" },
+            { "state_code": 6, "county_code": 95, "name": "Solano County, CA" },
+            { "state_code": 6, "county_code": 97, "name": "Sonoma County, CA" },
+            { "state_code": 6, "county_code": 23, "name": "Humboldt County, CA" }
+          ]
+        }
+      }
+    }
+  }
+}

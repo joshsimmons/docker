@@ -1,0 +1,49 @@
+{
+  "name": "/v1/search venues",
+  "priorityThresh": 1,
+  "endpoint": "search",
+  "tests": [
+    {
+      "id": 1,
+      "status": "pass",
+      "notes": "sonoma county airport should come up for STS",
+      "in": {
+        "text": "sts airport"
+      },
+      "expected": {
+        "properties": [
+          {
+            "layer": "venue",
+            "name": "Sonoma County Airport",
+            "country_a": "USA",
+            "country": "United States",
+            "region": "California",
+            "region_a": "CA",
+            "county": "Sonoma County"
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "status": "pass",
+      "notes": "napa county airport should come up for APC",
+      "in": {
+        "text": "apc airport"
+      },
+      "expected": {
+        "properties": [
+          {
+            "layer": "venue",
+            "name": "Napa County Airport",
+            "country_a": "USA",
+            "country": "United States",
+            "region": "California",
+            "region_a": "CA",
+            "county": "Napa County"
+          }
+        ]
+      }
+    }
+  ]
+}
